@@ -7,39 +7,23 @@ Version 0 - Domain model
 
 | Ship | |
 | --- | --- |
+| Has a name | |
 | Has a length | |	
 | Can be sunk | |
 | Knows how many hits it's received | |
 
+| Player | |
+| --- | --- |
+| Places | Board, Ship |
+| Fires at | Board |
+| Has a name | |
+| Controls a | Board |
 
-Player
-
-Places 					Ship on board
-
-Fires missiles at 		Board
-
-Has a 					Board
-
-Board
-
-Knows location of 		Ships
-
-Checks for valid position	Ships
-
-Checks ship’s position is valid Player
-
-Knows location of 		Hits/misses
-
-Knows location of 		Squares
-
-Has 10x10 				Squares
-
-Checks how many Sunk	Ship
-	
-Game
-
-Knows who’s turn it is 	Player
-
-Changes turn 			Player
-
-Asks player for input 	Player
+| Board | |
+| --- | --- |
+| Has 100 squares | |
+| Checks valid position | Ship |
+| Tracks status of squares | Ship |
+| Reports hit/miss | |
+| Reports hit to | Ship |
+| Knows how many sunk | Ship |
