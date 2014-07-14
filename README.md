@@ -5,11 +5,12 @@ For this week we have been placed into a team of four and tasked with recreating
 
 Version 0 - Domain model
 
-Ship
+| Ship | |
+| --- | --- |
+| Has a length | |	
+| Can be sunk | |
+| Knows how many hits it's received | |
 
-Has a 					Length
-	
-Knows if it’s 			Sunk
 
 Player
 
@@ -23,6 +24,8 @@ Board
 
 Knows location of 		Ships
 
+Checks for valid position	Ships
+
 Checks ship’s position is valid Player
 
 Knows location of 		Hits/misses
@@ -31,6 +34,8 @@ Knows location of 		Squares
 
 Has 10x10 				Squares
 
+Checks how many Sunk	Ship
+	
 Game
 
 Knows who’s turn it is 	Player
