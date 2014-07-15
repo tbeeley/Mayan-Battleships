@@ -1,6 +1,11 @@
 class Square
 end
 
+class Water
+	def available?
+		true
+	end
+end
 
 class Board
 
@@ -13,7 +18,6 @@ class Board
 	end
 
 	# def place_horizontal(row, column, ship)
-
 	# 	return if (column + ship.length) > 10
 	# 	current_column = column
 	# 	while current_column < column + ship.length
@@ -31,13 +35,32 @@ class Board
 	# 	end
 	# end
 
-	def place(row,column,direction,ship)
+	def place (row,column,direction,ship)
+		if placement_is_valid?(row,column,direction,ship)
+			assign_ship_markers(row,column,direction,ship)
+		end
+	end
+
+	def assign_ship_markers(row,column,direction,ship)
 		@x = row
 		@y = column
 		ship.length.times do
 			@grid[x][y].add_marker_for(ship)
 			increment(direction)
 		end
+	end
+
+
+	def placement_is_valid?(row,column,direction,ship)
+		@x = row
+		@y = column
+		return_val = []
+		ship.length.times do
+			return false if x > 9 || y > 9
+			return false if @grid[x][y].contents.is_a?(Water)
+			increment(direction)
+		end
+		true
 	end
 
 	def increment direction
@@ -48,7 +71,6 @@ class Board
 			@x += 1
 		end
 	end
-
 
 end
 
