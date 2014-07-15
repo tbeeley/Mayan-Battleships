@@ -13,18 +13,20 @@ class Board
 	end
 
 	def place_horizontal(row, column, ship)
-		i = column
-		while i < column + ship.length
-			@grid[row][i].add_marker_for(ship)
-			i += 1
+		return if (column + ship.length) > 10
+		y = column
+		while y < column + ship.length
+			@grid[row][y].add_marker_for(ship)
+			y += 1
 		end
 	end
 
 	def place_vertical(row, column, ship)
-		i = row
-		while i < row + ship.length
-			@grid[i][column].add_marker_for(ship)
-			i += 1
+		return if (row + ship.length) > 10
+		x = row
+		while x < row + ship.length
+			@grid[x][column].add_marker_for(ship)
+			x += 1
 		end
 	end
 end

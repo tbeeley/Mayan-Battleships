@@ -41,6 +41,14 @@ describe Board do
 	end
 
 	it 'cannot place a ship outside the right edge of the grid' do
-		
+		ship = double :ship, length: 3
+		expect(board.grid[0][9]).not_to receive(:add_marker_for)
+		board.place_horizontal(0,9,ship)
+	end
+
+	it 'cannot place a ship outside the bottom edge of the grid' do
+		ship = double :ship, length: 3
+		expect(board.grid[9][0]).not_to receive(:add_marker_for)
+		board.place_vertical(9,0,ship)
 	end
 end
