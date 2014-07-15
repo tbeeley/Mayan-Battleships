@@ -18,11 +18,13 @@ describe Square do
 	end
 
 	it 'can be hit' do
-		square.hit!
+		allow(STDOUT).to receive(:puts)
+		square.hit!	
 		expect(square).to have_been_hit
 	end
 
 	it 'lets a ship know when it has been hit' do
+		allow(STDOUT).to receive(:puts)
 		ship = double :ship
 		square.add_marker_for(ship)
 		expect(ship).to receive(:add_hit) 
@@ -30,6 +32,7 @@ describe Square do
 	end
 
 	it 'reports if it has already been hit' do
+		allow(STDOUT).to receive(:puts)
 		square.hit!
 		expect(STDOUT).to receive(:puts).with("You have already targeted this location")
 		square.hit!
@@ -42,6 +45,19 @@ describe Square do
 
 		expect(ship).to receive(:add_hit).exactly(1).times
 		2.times { square.hit! }
+	end
+
+	it 'reports if it has hit water' do
+		expect(STDOUT).to receive(:puts).with("Target missed. Bad luck!")
+		square.hit!
+	end
+
+	it 'reports if it has hit ship' do
+		ship = double :ship, add_hit: nil
+		square.add_marker_for(ship)
+
+		expect(STDOUT).to receive(:puts).with("BOOM! Target down")
+		square.hit!
 	end
 
 end

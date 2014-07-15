@@ -15,14 +15,24 @@ class Square
 		@ships = ship
 	end	
 
-	def hit!
+	def hit! 
 		if has_been_hit?
 			puts "You have already targeted this location"
 		else
 			@hit = true
-			@ships.add_hit unless ships.nil?
+			report_hit
 		end
 	end
+
+	def report_hit
+		if ships.nil?
+			puts "Target missed. Bad luck!"
+		else
+			puts "BOOM! Target down"
+			@ships.add_hit 
+		end
+	end
+
 
 end
 
