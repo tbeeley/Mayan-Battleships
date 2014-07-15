@@ -3,17 +3,20 @@ require 'board'
 describe Board do
 
 	let (:board) { Board.new}
+
 	it 'has an array of squares' do
 		expect(board.grid).not_to be_empty
 	end
 
 	it 'has a grid with ten rows' do 
 		expect(board.grid.length).to eq 10
+		expect(board.grid.length).not_to eq 11
 	end
 
 	it 'has a grid with ten columns' do
 		board.grid.each do |row|
-		expect(row.length).to eq 10
+			expect(row.length).to eq 10
+			expect(row.length).not_to eq 11
 		end		
 	end
 
@@ -21,15 +24,23 @@ describe Board do
 		expect(board.grid.flatten.all?{|square| square.is_a?(Square)}).to be true
 	end
 
-	it 'can place the first sqaure of a ship' do
-		# square = double :square, ship_status: :ship
-		expect(board.grid[0][0]).to receive(:change_ship_status).with(:ship_name)
-		board.place(0,0,:ship_name)
+	it 'can place the squares of a ship horizontally' do
+		ship = double :ship, length: 3
+		expect(board.grid[0][0]).to receive(:add_marker_for).with(ship)
+		expect(board.grid[0][1]).to receive(:add_marker_for).with(ship)
+		expect(board.grid[0][2]).to receive(:add_marker_for).with(ship)
+		board.place_horizontal(0,0,ship)
 	end
 
-	xit 'places the second square of a horizontal ship' do
-		board
+	it 'can place the squares of a ship vertically' do
+		ship = double :ship, length: 3
+		expect(board.grid[0][0]).to receive(:add_marker_for).with(ship)
+		expect(board.grid[1][0]).to receive(:add_marker_for).with(ship)
+		expect(board.grid[2][0]).to receive(:add_marker_for).with(ship)
+		board.place_vertical(0,0,ship)
 	end
 
-
+	it 'cannot place a ship outside the right edge of the grid' do
+		
+	end
 end
