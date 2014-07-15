@@ -1,37 +1,47 @@
 require 'squares'
 
-describe Squares do
+describe Square do
 
-	context 'Knows what is on it' do
+	let(:square) {Square.new}
 
-		it 'knows if there is a ship on it' do
+	it 'knows that it does not contain a ship when created' do
+		expect(square.ships).to be nil
+	end
 
-		end
+	it 'can contain a ship' do
+		square.add_marker_for(:ship)
+		expect(square.ships).to eq :ship
+	end
 
-	# 	it 'knows which ship is on it' do
-			
-	# 	end
+	it 'has not been hit when created' do
+		expect(square).not_to have_been_hit
+	end
 
-	# 	it 'knows if it has been hit' do
-			
-	# 	end
+	it 'can be hit' do
+		square.hit!
+		expect(square).to have_been_hit
+	end
 
-	# end
+	it 'lets a ship know when it has been hit' do
+		ship = double :ship
+		square.add_marker_for(ship)
+		expect(ship).to receive(:add_hit) 
+		square.hit!
+	end
 
-	# context 'limitations of the square' do
-		
-	# 	it 'does not accept overlapping ships' do
-			
-	# 	end
+	it 'reports if it has already been hit' do
+		square.hit!
+		expect(STDOUT).to receive(:puts).with("You have already targeted this location")
+		square.hit!
+	end
 
-	# end
+	it 'does not add a hit to ship if square has already been hit' do
+		ship = double :ship
+		allow(STDOUT).to receive(:puts)
+		square.add_marker_for(ship)
 
-	# context 'reports status' do
-		
-	# 	it 'reports hits to ship' do
-			
-	# 	end
-
+		expect(ship).to receive(:add_hit).exactly(1).times
+		2.times { square.hit! }
 	end
 
 end

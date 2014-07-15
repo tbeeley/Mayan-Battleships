@@ -14,17 +14,17 @@ describe Ship do
 	end
 
 	it "knows how many times it's been hit" do
-		expect(ship.hits).to eq 0
+		expect(ship.hit_count).to eq 0
 	end
 
 	it 'can be hit' do
-		ship.hit!
-		expect(ship.hits).to eq 1
+		ship.add_hit
+		expect(ship.hit_count).to eq 1
 	end
 
 	it 'can be sunk' do
 		expect(ship.sunk?).to be false
-		3.times {ship.hit!}
+		3.times {ship.add_hit}
 		expect(ship.sunk?).to be true
 	end
 

@@ -1,11 +1,11 @@
 class Ship
 
 	DEFAULT_LENGTH = 3
-	attr_reader :length, :hits
+	attr_reader :length, :hit_count
 
 	def initialize(length: DEFAULT_LENGTH)	
 		@length = length
-		@hits = 0
+		@hit_count = 0
 	end
 
 	def self.canoe
@@ -24,12 +24,12 @@ class Ship
 		new(length:6)
 	end
 
-	def hit!
-		@hits += 1
+	def add_hit
+		@hit_count += 1
 	end
 
 	def sunk?
-		hits == length
+		hit_count == length
 	end
 
 end
