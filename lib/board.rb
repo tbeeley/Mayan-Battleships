@@ -1,3 +1,4 @@
+
 require_relative 'squares'
 
 class Board
