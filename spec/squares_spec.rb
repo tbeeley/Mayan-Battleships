@@ -53,8 +53,8 @@ describe Square do
 
 	xit 'reports if it has hit ship' do
 		ship = double :ship, hit!: nil
-		square.add_marker_for(ship)e4sswgit status
-		
+		square.add_marker_for(ship)
+
 
 		expect(STDOUT).to receive(:puts).with("BOOM! Target down")
 		square.hit!
