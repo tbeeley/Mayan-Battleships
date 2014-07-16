@@ -1,4 +1,5 @@
 class Game
+	
 	def initialize
 		@players = 2
 	end

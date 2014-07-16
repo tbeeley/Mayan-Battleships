@@ -59,16 +59,17 @@ describe Ship do
 			canoe = Ship.canoe
 			expect(canoe.length).to eq 3
 		end
+		
+		it 'can be a shortboat' do
+			shortboat = Ship.shortboat
+			expect(shortboat.length).to eq 4
+		end
 
 		it 'can be a longboat' do
 			longboat = Ship.longboat
 			expect(longboat.length).to eq 6
 		end
 
-		it 'can be a shortboat' do
-			shortboat = Ship.shortboat
-			expect(shortboat.length).to eq 4
-		end
 
 	end
 
