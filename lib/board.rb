@@ -21,8 +21,7 @@ class Board
 	end
 
 	def assign_ship_markers(row,column,direction,ship)
-		@x = row
-		@y = column
+		@x,@y = row, column
 		ship.length.times do
 			@grid[x][y].add_marker_for(ship)
 			increment(direction)
@@ -30,8 +29,7 @@ class Board
 	end
 
 	def placement_is_valid?(row,column,direction,ship)
-		@x = row
-		@y = column
+		@x,@y = row, column
 		ship.length.times do
 			return false if x > 9 || y > 9
 			return false if !@grid[x][y].contents.is_a?(Water)
