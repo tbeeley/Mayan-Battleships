@@ -8,8 +8,5 @@ describe Game do
 		expect(game.players).to eq 2
 	end
 
-	xit 'initializes with 10  ships' do
-		expect(game.ships.count).to eq 10
-	end
 
 end

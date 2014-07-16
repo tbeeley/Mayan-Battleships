@@ -1,10 +1,16 @@
+require_relative 'board'
+
+class Fleet
+
+end
+
 class Player
 
 	def initialize(name: "")
 		@name = name
-		@ships = []
+		@fleet = Fleet.new
+		@board = Board.new
 	end
 
-	attr_reader :name
-
+	attr_reader :name, :fleet, :board
 end
