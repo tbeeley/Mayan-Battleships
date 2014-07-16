@@ -1,7 +1,7 @@
 class Square
 	
 	def initialize 
-		@ships = nil
+		@contents = Water.new
 		@hit = false
 	end	
 
@@ -9,10 +9,10 @@ class Square
 		@hit
 	end
 
-	attr_reader :ships
+	attr_accessor :contents
 
 	def add_marker_for(ship)
-		@ships = ship
+		@contents = ship
 	end	
 
 	def hit! 
@@ -20,18 +20,18 @@ class Square
 			puts "You have already targeted this location"
 		else
 			@hit = true
-			report_hit
+			@contents.hit!
 		end
 	end
 
-	def report_hit
-		if ships.nil?
-			puts "Target missed. Bad luck!"
-		else
-			puts "BOOM! Target down"
-			@ships.add_hit 
-		end
-	end
+	# def report_hit
+	# 	if contents.nil?
+	# 		puts "Target missed. Bad luck!"
+	# 	else
+	# 		puts "BOOM! Target down"
+	# 		@contents.add_hit 
+	# 	end
+	# end
 
 
 end
