@@ -67,4 +67,5 @@ describe Board do
 		expect(board.grid[5][4]).not_to receive(:add_marker_for)
 		board.place(5,2,:horizontal,ship2)
 	end
+
 end
