@@ -10,13 +10,11 @@ describe Board do
 
 	it 'has a grid with ten rows' do 
 		expect(board.grid.length).to eq 10
-		expect(board.grid.length).not_to eq 11
 	end
 
 	it 'has a grid with ten columns' do
 		board.grid.each do |row|
 			expect(row.length).to eq 10
-			expect(row.length).not_to eq 11
 		end		
 	end
 

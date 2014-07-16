@@ -2,11 +2,10 @@ require_relative 'squares'
 
 class Board
 
-	attr_reader :grid, :x, :y
+	attr_reader :grid
 
 	def initialize
 		@grid = Array.new(10) { Array.new(10) { Square.new } }
-		@x, @y = 0, 0
 	end
 
 	def place(ship, at: coordinate, facing: direction)
