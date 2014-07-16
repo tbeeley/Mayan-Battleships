@@ -1,7 +1,7 @@
 class Game
 	
 	def initialize
-		@players = 2
+		@players = [Player.new, Player.new]
 	end
 
 	attr_reader :players

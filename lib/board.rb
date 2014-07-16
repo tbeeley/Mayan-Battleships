@@ -9,7 +9,7 @@ class Board
 		@grid = Array.new(10) { Array.new(10) { Square.new } }
 	end
 
-	def place(ship, at: coordinate, facing: direction)
+	def place ship, at: coordinate, facing: direction
 		if check_valid?(ship, at[:x], at[:y], facing)
 			ship.length.times do
 				@grid[at[:x]][at[:y]].add_marker_for(ship)
