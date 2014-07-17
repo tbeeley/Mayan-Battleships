@@ -18,7 +18,7 @@ class Game
 	def play_game
 		create_game_elements
 		set_up_game
-		# play_battleships
+		play_battleships
 	end
 
 	def create_game_elements
@@ -31,6 +31,22 @@ class Game
 		place_ships(players[0])
 		place_ships(players[1])
 		puts "Lets play Battleships!"
+	end
+
+	def play_battleships
+		turn = 0
+		until players[0].has_lost? || players[1].has_lost?
+			puts "Turn #{turn}"
+			row, column = get_target(players[0])
+			target = players[1]
+			loose_arrows(target, row, column)
+
+			row, column = get_target(players[1])
+			target = players[0]
+			loose_arrows(target, row, column)
+			turn += 1
+		end
+		puts "Game over"
 	end
 
 	def create_players
@@ -46,7 +62,6 @@ class Game
 		end
 	end
 
- 	
  	def create_ships
  		players.each do |player|
  			player.ships = create_fleet
@@ -61,14 +76,24 @@ class Game
 		puts "Please place your ships, #{player.name}:"
 		player.ships.each do |ship| 
 			begin
-				row = interface.get_number("row", ship)
-				column = interface.get_number("column", ship)
-				direction = interface.get_direction(ship)
+				row, column, direction = interface.get_all_input(ship)
 				coordinate = {x: row.to_i, y: column.to_i}
 			end while !player.board.check_valid?(ship, at: coordinate, facing: direction.to_sym)
+			
 			coordinate = {x: row.to_i, y: column.to_i}
 			player.board.place(ship, at: coordinate, facing: direction.to_sym)
 		end
+	end
+
+	def get_target(player)
+		puts "It's your turn, #{player.name}"
+		row = interface.get_number_for_strike("row")
+		column = interface.get_number_for_strike("column")
+		return row, column
+	end
+
+	def loose_arrows(target, row, column)
+		target.board.grid[row.to_i][column.to_i].hit!
 	end
 
 end

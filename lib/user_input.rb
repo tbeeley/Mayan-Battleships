@@ -13,6 +13,12 @@ class UserInput
 		gets.chomp
 	end
 
+	def get_number_for_strike(axis)
+		puts "Please enter your target #{axis}"
+		target = gets.chomp
+		check_number(target)
+	end
+
 	def get_number(axis, ship)
 		puts "To place your #{ship.name}(#{ship.length}), please enter a #{axis} between 0 and 9"
 		number = gets.chomp
@@ -40,6 +46,14 @@ class UserInput
 		end
 		number
 	end
+
+	def get_all_input(ship)
+		row = get_number("row", ship)
+		column = get_number("column", ship)
+		direction = get_direction(ship)
+		return row, column, direction
+	end
+
 
 	def get_coordinate
 		puts "Please enter a coordinate"
