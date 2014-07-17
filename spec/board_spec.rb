@@ -46,19 +46,17 @@ describe Board do
 		ship = double :ship, length: 3, is_a?: true
 		coordinate = {x: 0, y:9}
 		allow(board.grid[0][9]).to receive(:contents).and_return(ship)
-		expect(board.grid[0][9]).not_to receive(:add_marker_for)
-		board.place ship, at: coordinate, facing: :horizontal
+		expect(board.check_valid?(ship, at: coordinate, facing: :horizontal)).to be false
 	end
 
 	it 'cannot place a ship outside the bottom edge of the grid' do
 		ship = double :ship, length: 3, is_a?: true
 		coordinate = {x: 9, y: 0}
 		allow(board.grid[9][0]).to receive(:contents).and_return(ship)		
-		expect(board.grid[9][0]).not_to receive(:add_marker_for)
-		board.place ship, at: coordinate, facing: :vertical
+		expect(board.check_valid?(ship, at: coordinate, facing: :vertical)).to be false
 	end
 
-	it 'does not place a ship over another ship' do
+	xit 'does not place a ship over another ship' do
 		ship1 = double :ship, length: 3, is_a?: false
 		ship2 = double :ship, length: 3
 		water = double :water, is_a?: true

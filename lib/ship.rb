@@ -26,6 +26,7 @@ class Ship
 	end
 
 	def add_hit
+		puts "A hit!"
 		@hit_count += 1
 		if sunk? 
 			report_sunk
