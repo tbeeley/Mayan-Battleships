@@ -20,7 +20,7 @@ class Square
 			puts "You have already targeted this location"
 		else
 			@hit = true
-			@contents.hit!
+			@contents.add_hit
 		end
 	end
 

@@ -3,7 +3,7 @@ require 'squares'
 describe Square do
 
 
-	let(:water) {double :water, hit!: nil}
+	let(:water) {double :water, add_hit: nil}
 	let(:square) {Square.new}
 	let(:ship) {double :ship }
 	before(:each) { allow(STDOUT).to receive(:puts) }
@@ -29,7 +29,7 @@ describe Square do
 
 	it 'lets a ship know when it has been hit' do
 		square.add_marker_for(ship)
-		expect(ship).to receive(:hit!) 
+		expect(ship).to receive(:add_hit) 
 		square.hit!
 	end
 
@@ -42,7 +42,7 @@ describe Square do
 	it 'does not add a hit to ship if square has already been hit' do
 		square.add_marker_for(ship)
 
-		expect(ship).to receive(:hit!).exactly(1).times
+		expect(ship).to receive(:add_hit).exactly(1).times
 		2.times { square.hit! }
 	end
 
@@ -52,7 +52,7 @@ describe Square do
 	end
 
 	xit 'reports if it has hit ship' do
-		ship = double :ship, hit!: nil
+		ship = double :ship, add_hit: nil
 		square.add_marker_for(ship)
 
 

@@ -1,5 +1,5 @@
 class Water
-	def hit!
+	def add_hit
 
 	end
 end
