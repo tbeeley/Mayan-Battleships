@@ -6,16 +6,16 @@ describe UserInput do
 	it 'should ask for a name' do
 		expect(STDOUT).to receive(:puts).with("Please enter your name")
 		allow(user_input).to receive(:gets).and_return("Charlotte")
-		expect(user_input.get_name).to eq("Charlotte")
+		expect(user_input.get_name_of_player).to eq("Charlotte")
 	end
 
 	it 'should ask for a coordinate' do
 		expect(STDOUT).to receive(:puts).with("Please enter a coordinate")
 		allow(user_input).to receive(:gets).and_return("A1")
-		expect(user_input.get_coordinate).to eq({[0],[0]})
+		expect(user_input.get_coordinate).to eq("A1")
 	end 
 
-	it 'should ask for a direction' do
+	xit 'should ask for a direction' do
 		expect(STDOUT).to receive(:puts).with("Please select your ship's direction")
 		allow(user_input).to receive(:gets).and_return("Vertical")
 		expect(user_input.get_direction).to eq("Vertical")

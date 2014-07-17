@@ -1,5 +1,6 @@
 
 require_relative 'squares'
+require_relative 'water'
 
 class Board
 
@@ -10,55 +11,23 @@ class Board
 	end
 
 	def place ship, at: coordinate, facing: direction
-		if check_valid?(ship, at[:x], at[:y], facing)
 			ship.length.times do
 				@grid[at[:x]][at[:y]].add_marker_for(ship)
 				facing == :horizontal ? at[:y] += 1 : at[:x] += 1
 			end
-		end
 	end
 
-	def check_valid?(ship, x, y, direction)
+	def check_valid?(ship, at: coordinate, facing: direction)
 		ship.length.times do
-			return false if x > 9 || y > 9
-			return false if !@grid[x][y].contents.is_a?(Water)
-			direction == :horizontal ? y += 1 : x += 1
+			if at[:x] > 9 || at[:y] > 9 || !@grid[at[:x]][at[:y]].contents.is_a?(Water)
+				puts "You can't put it there, try again"
+				return false
+			else
+				facing == :horizontal ? at[:y] += 1 : at[:x] += 1
+			end
 		end
 		true
 	end
 end
 
 
-
-	# def placex(ship, at: coordinate, facing: direction)
-	# 	if placement_is_valid?(at[:x],at[:y],facing,ship)
-	# 		assign_ship_markers(at[:x],at[:y],facing,ship)
-	# 	end
-	# end
-
-	# def assign_ship_markers(row,column,direction,ship)
-	# 	@x,@y = row, column
-	# 	ship.length.times do
-	# 		@grid[x][y].add_marker_for(ship)
-	# 		increment(direction)
-	# 	end
-	# end
-
-	# def placement_is_valid?(row,column,direction,ship)
-	# 	@x,@y = row, column
-	# 	ship.length.times do
-	# 		return false if x > 9 || y > 9
-	# 		return false if !@grid[x][y].contents.is_a?(Water)
-	# 		increment(direction)
-	# 	end
-	# 	true
-	# end
-
-	# def increment direction
-	# 	case direction
-	# 	when :horizontal
-	# 		@y += 1
-	# 	when :vertical
-	# 		@x += 1
-	# 	end
-	# end
