@@ -18,8 +18,6 @@ describe TerminalBoard do
 		terminal_board.print_header
 	end
 
-
-
 	context 'When a hit has been made'do
 		before(:each) {player.board.grid[2][2].hit!}
 		before(:each) {player.board.grid[0][0].hit!}
