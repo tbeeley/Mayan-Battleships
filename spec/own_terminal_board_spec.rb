@@ -17,23 +17,23 @@ describe OwnView do
 
 		it 'Assigns an X for a ship which has been hit' do
 			own_terminal_board.read
-			expect(own_terminal_board.display_own_grid[0][0]).to eq "X"
+			expect(own_terminal_board.display_grids[0][0]).to eq "X"
 		end
 
 		it 'Assigns a O for water which has been hit' do
 			own_terminal_board.read
-			expect(own_terminal_board.display_own_grid[2][2]).to eq "O"
+			expect(own_terminal_board.display_grid[2][2]).to eq "O"
 		end
 
 		it 'assigns a + for ships which have been placed' do
 			own_terminal_board.read
-			expect(own_terminal_board.display_own_grid[0][1]).to eq "+"
+			expect(own_terminal_board.display_grid[0][1]).to eq "+"
 		end
 
-		it 'can print a board' do
-			own_terminal_board.read
-			own_terminal_board.print
-		end
+		# it 'can print a board' do
+		# 	own_terminal_board.read
+		# 	own_terminal_board.print
+		# end
 
 	end
 

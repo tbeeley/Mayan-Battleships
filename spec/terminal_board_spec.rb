@@ -13,10 +13,10 @@ describe TerminalBoard do
 		expect(terminal_board.display_grid).to eq Array.new(10,Array.new(10, " "))
 	end
 
-	it 'Can print a header' do
-		expect(terminal_board).to receive(:puts).with (" | 1 2 3 4 5 6 7 8 9 10")
-		terminal_board.print_header
-	end
+	# it 'Can print a header' do
+	# 	expect(terminal_board).to receive(:puts).with (" | 1 2 3 4 5 6 7 8 9 10")
+	# 	terminal_board.print_header
+	# end
 
 	context 'When a hit has been made'do
 		before(:each) {player.board.grid[2][2].hit!}
@@ -32,10 +32,10 @@ describe TerminalBoard do
 			expect(terminal_board.display_grid[2][2]).to eq "O"
 		end
 	
-	it 'can print a board' do
-		terminal_board.read
-		terminal_board.print
-	end
+	# it 'can print a board' do
+	# 	terminal_board.read
+	# 	terminal_board.print
+	# end
 
 	end
 

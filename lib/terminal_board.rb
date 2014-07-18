@@ -9,27 +9,14 @@ class TerminalBoard
 		@board = board	
 	end
 
-
-
 	def read
 		GRID_RANGE.each do |x|
 			GRID_RANGE.each do |y|
 				@display_grid[x][y]= convert_contents_to_string(board.grid[x][y])
 			end
 		end	
+		self
 	end	
-
-	def print_header
-		puts " | 1 2 3 4 5 6 7 8 9 10"
-	end
-	
-	def print 
-		print_header
-		row_name = ["A","B","C","D","E","F","G","H","I","J"]
-		GRID_RANGE.each do |x|
-			puts "#{row_name[x]}| #{display_grid[x].join(" ")}"
-		end
-	end
 
 	def convert_contents_to_string(square)
 		if square.contents.is_a?(Water)

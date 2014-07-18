@@ -41,13 +41,11 @@ class Game
 		turn = 0
 		until players[0].has_lost? || players[1].has_lost?
 			puts "Turn #{turn}"
-			players[1].terminal_board.read
-			players[1].terminal_board.print
+			interface.print(players[1].terminal_board.read)
 			row, column = get_target(players[0])
 			target = players[1]
 			loose_arrows(target, row, column)
-			players[0].terminal_board.read
-			players[0].terminal_board.print
+			interface.print(players[0].terminal_board.read)
 			row, column = get_target(players[1])
 			target = players[0]
 			loose_arrows(target, row, column)
@@ -89,8 +87,7 @@ class Game
 	def place_ships(player)
 		puts "Please place your ships, #{player.name}:"
 		player.ships.each do |ship| 
-			player.own_terminal_board.read
-			player.own_terminal_board.print
+			interface.print(player.own_terminal_board.read)
 			begin
 				row, column, direction = interface.get_all_input(ship)
 				coordinate = {x: row.to_i, y: column.to_i}
