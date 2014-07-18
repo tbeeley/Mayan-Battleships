@@ -7,7 +7,7 @@ class Player
 		@name = name
 	end
 
-	attr_accessor :name, :board, :ships
+	attr_accessor :name, :board, :ships, :terminal_board, :own_terminal_board
 
 	def has_lost?
 			ships.all? {|ship| ship.sunk?}

@@ -4,6 +4,9 @@ require_relative 'ship'
 require_relative 'squares'
 require_relative 'user_input'
 require_relative 'water'
+require_relative 'game'
+require_relative 'terminal_board'
+require_relative 'own_terminal_board'
 
 class Game
 	
@@ -25,22 +28,26 @@ class Game
 		create_players
 		create_board
 		create_ships
+		create_terminal_boards
 	end
 
 	def set_up_game
 		place_ships(players[0])
 		place_ships(players[1])
-		puts "Lets play Battleships!"
+		puts "Let's play Battleships!"
 	end
 
 	def play_battleships
 		turn = 0
 		until players[0].has_lost? || players[1].has_lost?
 			puts "Turn #{turn}"
+			players[1].terminal_board.read
+			players[1].terminal_board.print
 			row, column = get_target(players[0])
 			target = players[1]
 			loose_arrows(target, row, column)
-
+			players[0].terminal_board.read
+			players[0].terminal_board.print
 			row, column = get_target(players[1])
 			target = players[0]
 			loose_arrows(target, row, column)
@@ -62,6 +69,13 @@ class Game
 		end
 	end
 
+	def create_terminal_boards
+			players.each do |player|
+			player.terminal_board =TerminalBoard.new(player.board)
+			player.own_terminal_board = OwnView.new(player.terminal_board)
+		end
+	end
+
  	def create_ships
  		players.each do |player|
  			player.ships = create_fleet
@@ -69,12 +83,14 @@ class Game
 	end
 	
 	def create_fleet
-		[Ship.raft, Ship.canoe, Ship.shortboat, Ship.longboat]
+		[Ship.raft, Ship.canoe]#, Ship.shortboat, Ship.longboat]
 	end
 
 	def place_ships(player)
 		puts "Please place your ships, #{player.name}:"
 		player.ships.each do |ship| 
+			player.own_terminal_board.read
+			player.own_terminal_board.print
 			begin
 				row, column, direction = interface.get_all_input(ship)
 				coordinate = {x: row.to_i, y: column.to_i}
@@ -94,6 +110,7 @@ class Game
 
 	def loose_arrows(target, row, column)
 		target.board.grid[row.to_i][column.to_i].hit!
+
 	end
 
 end

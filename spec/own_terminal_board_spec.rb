@@ -28,14 +28,12 @@ describe OwnView do
 		it 'assigns a + for ships which have been placed' do
 			own_terminal_board.read
 			expect(own_terminal_board.display_own_grid[0][1]).to eq "+"
-
 		end
 
-	
-	it 'can print a board' do
-		own_terminal_board.read
-		own_terminal_board.print
-	end
+		it 'can print a board' do
+			own_terminal_board.read
+			own_terminal_board.print
+		end
 
 	end
 
