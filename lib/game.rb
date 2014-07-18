@@ -8,54 +8,41 @@ require_relative 'game'
 require_relative 'terminal_board'
 require_relative 'own_terminal_board'
 
+NUMBER_OF_PLAYERS = 2
+NUMBER_OF_RAFTS = 1
+NUMBER_OF_CANOES = 1
+NUMBER_OF_SHORTBOATS = 1
+NUMBER_OF_LONGBOATS = 1
+
 class Game
 	
 	def initialize
 		@players = []
 		@interface = UserInput.new
-		play_game
+		# play_game
 	end
 
 	attr_reader :players, :interface
 
-	def play_game
-		create_game_elements
-		set_up_game
-		play_battleships
-	end
+# Phase 0
 
-	def create_game_elements
-		create_players
-		create_board
-		create_ships
-		create_terminal_boards
-	end
+# 	def play_game
+# 		create_game_elements
+# 		set_up_game
+# 		play_battleships
+# 	end
 
-	def set_up_game
-		place_ships(players[0])
-		place_ships(players[1])
-		puts "Let's play Battleships!"
-	end
+# # Phase 1 - create game elements
 
-	def play_battleships
-		turn = 0
-		until players[0].has_lost? || players[1].has_lost?
-			puts "Turn #{turn}"
-			interface.print(players[1].terminal_board.read)
-			row, column = get_target(players[0])
-			target = players[1]
-			loose_arrows(target, row, column)
-			interface.print(players[0].terminal_board.read)
-			row, column = get_target(players[1])
-			target = players[0]
-			loose_arrows(target, row, column)
-			turn += 1
-		end
-		puts "Game over"
-	end
+# 	def create_game_elements
+# 		create_players
+# 		create_board
+# 		create_ships
+# 		create_terminal_boards
+# 	end
 
 	def create_players
-		2.times do
+		NUMBER_OF_PLAYERS.times do
 			name = interface.get_name_of_player
 			@players << Player.new(name: name)
 		end
@@ -76,39 +63,70 @@ class Game
 
  	def create_ships
  		players.each do |player|
- 			player.ships = create_fleet
+ 			create_fleet_for(player)
  		end
 	end
 	
-	def create_fleet
-		[Ship.raft, Ship.canoe]#, Ship.shortboat, Ship.longboat]
+	def create_fleet_for(player)
+		NUMBER_OF_RAFTS.times 		{player.ships << Ship.raft} 
+		NUMBER_OF_CANOES.times 		{player.ships << Ship.canoe}
+		NUMBER_OF_SHORTBOATS.times 	{player.ships << Ship.shortboat}
+		NUMBER_OF_LONGBOATS.times 	{player.ships << Ship.longboat}	
 	end
 
-	def place_ships(player)
-		puts "Please place your ships, #{player.name}:"
-		player.ships.each do |ship| 
-			interface.print(player.own_terminal_board.read)
-			begin
-				row, column, direction = interface.get_all_input(ship)
-				coordinate = {x: row.to_i, y: column.to_i}
-			end while !player.board.check_valid?(ship, at: coordinate, facing: direction.to_sym)
+# 	# Phase 2: players place ships on board
+# 	def set_up_game
+# 		place_ships(players[0])
+# 		place_ships(players[1])
+# 		puts "Let's play Battleships!"
+# 	end
+
+
+
+# 	def place_ships(player)
+# 		puts "Please place your ships, #{player.name}:"
+# 		player.ships.each do |ship| 
+# 			interface.print(player.own_terminal_board.read)
+# 			begin
+# 				row, column, direction = interface.get_all_input(ship)
+# 				coordinate = {x: row.to_i, y: column.to_i}
+# 			end while !player.board.check_valid?(ship, at: coordinate, facing: direction.to_sym)
 			
-			coordinate = {x: row.to_i, y: column.to_i}
-			player.board.place(ship, at: coordinate, facing: direction.to_sym)
-		end
-	end
+# 			coordinate = {x: row.to_i, y: column.to_i}
+# 			player.board.place(ship, at: coordinate, facing: direction.to_sym)
+# 		end
+# 	end
 
-	def get_target(player)
-		puts "It's your turn, #{player.name}"
-		row = interface.get_number_for_strike("row")
-		column = interface.get_number_for_strike("column")
-		return row, column
-	end
+# 	# Phase 3: play the game
 
-	def loose_arrows(target, row, column)
-		target.board.grid[row.to_i][column.to_i].hit!
+# 	def play_battleships
+# 		turn = 0
+# 		until players[0].has_lost? || players[1].has_lost?
+# 			puts "Turn #{turn}"
+# 			interface.print(players[1].terminal_board.read)
+# 			row, column = get_target(players[0])
+# 			target = players[1]
+# 			loose_arrows(target, row, column)
+# 			interface.print(players[0].terminal_board.read)
+# 			row, column = get_target(players[1])
+# 			target = players[0]
+# 			loose_arrows(target, row, column)
+# 			turn += 1
+# 		end
+# 		puts "Game over"
+# 	end
 
-	end
+# 	def get_target(player)
+# 		puts "It's your turn, #{player.name}"
+# 		row = interface.get_number_for_strike("row")
+# 		column = interface.get_number_for_strike("column")
+# 		return row, column
+# 	end
+
+# 	def loose_arrows(target, row, column)
+# 		target.board.grid[row.to_i][column.to_i].hit!
+
+# 	end
 
 end
 
