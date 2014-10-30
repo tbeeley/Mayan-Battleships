@@ -1,5 +1,5 @@
 # Week 4 group project - Battleships
-## Dave, Charlotte, Thomas, Talal
+## Dave, Charlotte, Pom, Talal
 
 For this week we have been placed into a team of four and tasked with recreating a game of Battleships in Ruby. Over four days we will work on a domain model, implement that model's classes, build the core game engine and finally add a user interface.
 
