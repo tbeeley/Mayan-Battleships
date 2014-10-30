@@ -9,7 +9,7 @@ describe OwnView do
 	before(:each) {player.board.place(player.ships[1], at: {x:2,y:0}, facing: :vertical)}
 
 	let(:own_terminal_board) {OwnView.new(terminal_board)}
-	
+
 
 	context 'When a hit has been made'do
 		before(:each) {player.board.grid[2][2].hit!}
@@ -29,11 +29,6 @@ describe OwnView do
 			own_terminal_board.read
 			expect(own_terminal_board.display_grid[0][1]).to eq "+"
 		end
-
-		# it 'can print a board' do
-		# 	own_terminal_board.read
-		# 	own_terminal_board.print
-		# end
 
 	end
 

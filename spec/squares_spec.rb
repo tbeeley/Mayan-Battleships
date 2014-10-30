@@ -23,13 +23,13 @@ describe Square do
 	end
 
 	it 'can be hit' do
-		square.hit!	
+		square.hit!
 		expect(square).to have_been_hit
 	end
 
 	it 'lets a ship know when it has been hit' do
 		square.add_marker_for(ship)
-		expect(ship).to receive(:add_hit) 
+		expect(ship).to receive(:add_hit)
 		square.hit!
 	end
 

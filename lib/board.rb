@@ -11,10 +11,10 @@ class Board
 	end
 
 	def place ship, at: coordinate, facing: direction
-			ship.length.times do
-				@grid[at[:x]][at[:y]].add_marker_for(ship)
-				facing == :horizontal ? at[:y] += 1 : at[:x] += 1
-			end
+		ship.length.times do
+			@grid[at[:x]][at[:y]].add_marker_for(ship)
+			facing == :horizontal ? at[:y] += 1 : at[:x] += 1
+		end
 	end
 
 	def check_valid?(ship, at: coordinate, facing: direction)
@@ -29,5 +29,3 @@ class Board
 		true
 	end
 end
-
-

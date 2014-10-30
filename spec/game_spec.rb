@@ -2,9 +2,9 @@ require 'game'
 
 describe Game do
 
-	let (:game) 	{ Game.new							}	
+	let (:game) 	{ Game.new							}
 	before(:each) 	{ allow(STDOUT).to receive(:puts) 	}
-	
+
 	it 'creates two players' do
 		game.create_players
 		expect(game.players.count).to eq Game::NUMBER_OF_PLAYERS
@@ -23,11 +23,10 @@ describe Game do
 	end
 
 	context 'when creating a fleet' do
+
 		before(:each) {game.create_players		}
 		before(:each) {game.create_ships		}
 		let(:player)  {game.players[0]			}
-
-
 
 		it 'gives each player the correct number of rafts' do
 			ships = player.ships.select do |ship|
@@ -70,16 +69,5 @@ describe Game do
 
 	end
 
-	context 'when in set-up phase' do
 
-		it 'asks each player in turn to place their ships' do
-			# Do we need to test this?
-		end
-
-	end
-
-context 'when playing the game' do
-
-
-	end
 end

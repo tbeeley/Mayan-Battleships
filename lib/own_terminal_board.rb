@@ -1,6 +1,6 @@
 class OwnView
 
-	GRID_RANGE = (0..9)	
+	GRID_RANGE = (0..9)
 
 	attr_reader :display_grid, :terminal_board
 
@@ -21,7 +21,7 @@ class OwnView
 					@display_grid[x][y] = "+"
 				end
 			end
-		end	
+		end
 		self
 	end
 

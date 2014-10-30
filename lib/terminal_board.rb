@@ -6,7 +6,7 @@ class TerminalBoard
 
 	def initialize board
 		@display_grid = Array.new(10) {Array.new(10, " ")}
-		@board = board	
+		@board = board
 	end
 
 	def read
@@ -14,17 +14,17 @@ class TerminalBoard
 			GRID_RANGE.each do |y|
 				@display_grid[x][y]= convert_contents_to_string(board.grid[x][y])
 			end
-		end	
+		end
 		self
-	end	
+	end
 
 	def convert_contents_to_string(square)
 		if square.contents.is_a?(Water)
-			 if square.has_been_hit?
-				return "O" 
+			if square.has_been_hit?
+				return "O"
 			end
 		elsif  square.contents.sunk?
-			return "#" 
+			return "#"
 		elsif square.has_been_hit?
 			return "X"
 		end
@@ -32,4 +32,3 @@ class TerminalBoard
 	end
 
 end
-

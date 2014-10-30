@@ -1,9 +1,9 @@
 class Square
-	
-	def initialize 
+
+	def initialize
 		@contents = Water.new
 		@hit = false
-	end	
+	end
 
 	def has_been_hit?
 		@hit
@@ -13,9 +13,9 @@ class Square
 
 	def add_marker_for(ship)
 		@contents = ship
-	end	
+	end
 
-	def hit! 
+	def hit!
 		if has_been_hit?
 			puts "You have already targeted this location"
 		else
@@ -24,16 +24,4 @@ class Square
 		end
 	end
 
-	# def report_hit
-	# 	if contents.nil?
-	# 		puts "Target missed. Bad luck!"
-	# 	else
-	# 		puts "BOOM! Target down"
-	# 		@contents.add_hit 
-	# 	end
-	# end
-
-
 end
-
-	

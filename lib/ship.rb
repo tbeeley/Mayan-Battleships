@@ -3,7 +3,7 @@ class Ship
 	DEFAULT_LENGTH = 3
 	attr_reader :length, :hit_count, :name
 
-	def initialize(length: DEFAULT_LENGTH, name: "ship")	
+	def initialize(length: DEFAULT_LENGTH, name: "ship")
 		@length = length
 		@hit_count = 0
 		@name = name
@@ -28,7 +28,7 @@ class Ship
 	def add_hit
 		puts "A hit!"
 		@hit_count += 1
-		if sunk? 
+		if sunk?
 			report_sunk
 		end
 	end

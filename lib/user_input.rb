@@ -3,8 +3,8 @@ class UserInput
 	GRID_RANGE = (0..9)
 
 	def initialize
-			@directions = ["horizontal","vertical"]
-			@numbers = %w[1 2 3 4 5 6 7 8 9 0]
+		@directions = ["horizontal","vertical"]
+		@numbers = %w[1 2 3 4 5 6 7 8 9 0]
 	end
 
 	attr_reader :directions, :numbers
@@ -62,14 +62,10 @@ class UserInput
 		# coordinate.convert
 	end
 
-	def convert
-
-	end
-
 	def print_header
 		puts " | 1 2 3 4 5 6 7 8 9 10"
 	end
-	
+
 	def print terminal_board
 		print_header
 		row_name = ["A","B","C","D","E","F","G","H","I","J"]
@@ -79,7 +75,3 @@ class UserInput
 	end
 
 end
-
-
-
-

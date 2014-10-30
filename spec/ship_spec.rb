@@ -49,7 +49,7 @@ describe Ship do
 	end
 
 	context 'list of active ships in Mayan fleet' do
-	
+
 		it 'can be a raft' do
 			raft = Ship.raft
 			expect(raft.length).to eq 2
@@ -59,7 +59,7 @@ describe Ship do
 			canoe = Ship.canoe
 			expect(canoe.length).to eq 3
 		end
-		
+
 		it 'can be a shortboat' do
 			shortboat = Ship.shortboat
 			expect(shortboat.length).to eq 4

@@ -13,14 +13,6 @@ describe UserInput do
 		expect(STDOUT).to receive(:puts).with("Please enter a coordinate")
 		allow(user_input).to receive(:gets).and_return("A1")
 		expect(user_input.get_coordinate).to eq("A1")
-	end 
-
-	xit 'should ask for a direction' do
-		expect(STDOUT).to receive(:puts).with("Please select your ship's direction")
-		allow(user_input).to receive(:gets).and_return("Vertical")
-		expect(user_input.get_direction).to eq("Vertical")
 	end
-
-
 
 end
