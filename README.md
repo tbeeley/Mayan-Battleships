@@ -1,7 +1,7 @@
 # Week 4 group project - Battleships
 [![Code Climate](https://codeclimate.com/github/tbeeley/Mayan-Battleships/badges/gpa.svg)](https://codeclimate.com/github/tbeeley/Mayan-Battleships)
 ## Dave, Charlotte, Pom, Talal
-![Image](/app/assets/images/Battleships.png)
+![Image](assets/images/Battleship.png)
 For this week we have been placed into a team of four and tasked with recreating a game of Battleships in Ruby. Over four days we will work on a domain model, implement that model's classes, build the core game engine and finally add a user interface.
 
 Version 0 - Domain model
