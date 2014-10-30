@@ -27,3 +27,6 @@ Version 0 - Domain model
 | Reports hit/miss | |
 | Reports hit to | Ship |
 | Knows how many sunk | Ship |
+
+
+Testing that I can amend this. 
