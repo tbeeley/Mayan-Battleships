@@ -51,4 +51,4 @@ player2.board.grid[1][7].hit!
 player1.board.grid[0][1].hit!
 player2.board.grid[1][7].hit!
 
-puts "end"
+puts "End"
